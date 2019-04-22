@@ -1,49 +1,50 @@
-#ifdef __APPLE__
-#include <GLUT/glut.h>
-#else
+#include<Windows.h>
 #include <GL/glut.h>
-#endif
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 
 float a[10][3];
+void drawPoly(float a[][3], int n)
+{
+	glBegin(GL_LINE_LOOP);
+	for (int i = 0;i < n;i++)
+	{
+		glVertex2f(a[i][0], a[i][1]);
+	}
+	glEnd();
+	glFlush();
+}
 
 void mul(int n, float trans[3][3])
 {
-	int i,j,k;
+	int i, j, k;
 	float result[10][3];
 	// Multiply original coordinate matrix a [][] with transformation matrix trans[][] to get the resultant new coordinates
-	for(i=0;i<n;i++)
+	for (i = 0;i < n;i++)
 	{
-		for(j=0;j<3;j++)
+		for (j = 0;j < 3;j++)
 		{
 			result[i][j] = 0;
-			for (k=0;k<3;k++)
+			for (k = 0;k < 3;k++)
 			{
-				result[i][j] =  result[i][j] + (a[i][k]* trans[k][j]);
+				result[i][j] = result[i][j] + (a[i][k] * trans[k][j]);
 			}
 		}
 	}
 
 	printf("\n Final coordinates are");
-	for(i=0;i<n;i++)
+	for (i = 0;i < n;i++)
 	{
 		printf("\n");
 
-		for(j=0;j<3;j++)
+		for (j = 0;j < 3;j++)
 		{
-			printf("%f  ",result[i][j]);
+			printf("%f  ", result[i][j]);
 		}
 	}
+	drawPoly(result, n);
 
-	glBegin(GL_LINE_LOOP);
-	for(i=0;i<n;i++)
-	{
-		glVertex2f(result[i][0],result[i][1]);
-	}
-	glEnd();
-	glFlush();
 }
 
 void translation(int n,float tx,float ty)
@@ -99,13 +100,7 @@ void input()
 	 }
 
 
-	glBegin(GL_LINE_LOOP);// Draw original polygon
-	for(i=0;i<n;i++)
-	{
-		glVertex2f(a[i][0],a[i][1]);
-	}
-	glEnd();
-	glFlush();
+	drawPoly(a,n);
 
 	printf("\n Enter the tx and ty: ");
 	scanf("%f%f",&tx,&ty);
@@ -115,22 +110,24 @@ void input()
 void disp()
 {
 
-	    glClearColor(1,1,1,1);
-		glClear(GL_COLOR_BUFFER_BIT);
-		glColor3f(0,0,0);
-	   	input();// call input function
-	    glFlush();
+	glClearColor(1, 1, 1, 1);
+	glClear(GL_COLOR_BUFFER_BIT);
+	glColor3f(0, 0, 0);
+	// call input function
+	input();
+	glFlush();
 }
 
-int main(int argc,char **argv)
+void main(int argc, char **argv)
 {
-	 glutInit(&argc,argv);
-	 glutInitDisplayMode(GLUT_SINGLE|GLUT_RGB);
-	 glutInitWindowPosition(50,50);
-	 glutInitWindowSize(500,500);
-	 glutCreateWindow("Translation0...");
-     gluOrtho2D(-300,300,-300,300);
-     glutDisplayFunc(disp);
-     glutMainLoop();
+	glutInit(&argc, argv);
+	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
+	glutInitWindowPosition(50, 50);
+	glutInitWindowSize(500, 500);
+	glutCreateWindow("Translation...");
+	gluOrtho2D(-300, 300, -300, 300);
+	glutDisplayFunc(disp);
+	glutMainLoop();
 
 }
+© 2019 GitHub, Inc.
