@@ -48,42 +48,6 @@ void display_adjmat(int n)
            }
 }
 
-void test_graph1(int n){
-  for(int i = 0; i < n; i++){
-    for(int j = 0; j < n; j++){
-      adj[i][j] = 1000;
-    }
-  }
-  adj[0][1] = 20;
-  adj[0][2] = 15;
-  adj[1][0] = 2;
-  adj[1][5] = 30;
-  adj[1][4] = 10;
-  adj[2][5] = 10;
-  adj[2][3] = 4;
-  adj[4][3] = 15;
-  adj[5][3] = 4;
-  adj[5][4] = 10;
-}
-
-void test_graph2(int n){
-  for(int i = 0; i < n; i++){
-    for(int j = 0; j < n; j++){
-      adj[i][j] = 1000;
-    }
-  }
-  adj[0][1] = 2;
-  adj[0][2] = 8;
-  adj[1][2] = 5;
-  adj[1][3] = 3;
-  adj[2][1] = 6;
-  adj[2][4] = 6;
-  adj[3][2] = 1;
-  adj[3][4] = 7;
-  adj[3][5] = 6;
-  adj[4][3] = 4;
-  adj[5][4] = 2;
-}
 
 void disp_arr(int arr[], int n, int src){
   int i;
@@ -176,7 +140,6 @@ void main(){
   int n;
   printf("Enter number of vertices\n");
   scanf("%d", &n);
-	test_graph1(n);
   create_graph(n);
   dij(n);
 }
