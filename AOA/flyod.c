@@ -36,39 +36,6 @@ void create_graph(int n)
 	}
 }
 
-void testgraph(int n)
-{
-  for(int i = 1; i <= n; i++){
-    for(int j = 1; j <= n; j++){
-      adj[i][j] = 1000;
-    }
-  }
-	adj[1][2] = 5;
-	adj[1][3] = 1;
-	adj[1][4] = 2;
-	adj[2][1] = 5;
-	adj[3][1] = 1;
-	adj[4][1] = 2;
-
-	adj[2][3] = 3;
-	adj[3][2] = 3;
-
-	adj[3][4] = 4;
-	adj[4][3] = 4;
-
-	seq[1][2] = 2;
-	seq[1][3] = 3;
-	seq[1][4] = 4;
-	seq[2][1] = 1;
-	seq[3][1] = 1;
-	seq[4][1] = 1;
-
-	seq[2][3] = 3;
-	seq[3][2] = 2;
-
-	seq[3][4] = 4;
-	seq[4][3] = 3;
-}
 
 void display_adjmat(int n)
 {
@@ -138,8 +105,7 @@ void main(){
   int n;
   printf("Enter number of vertices\n");
   scanf("%d", &n);
-  //create_graph(n);
-	testgraph(n);
+  create_graph(n);
   flyod(n);
 }
 
